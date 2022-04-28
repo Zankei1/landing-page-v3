@@ -39,8 +39,6 @@ header .nav-list a:hover {
 
 #inicio {
     height: 100vh;
-    min-height: 100vh;
-    max-height: 100vh;
     color: var(--text-color);
     display: flex;
     flex-direction: column;
@@ -50,7 +48,6 @@ header .nav-list a:hover {
 
 #inicio h1 {
     font-size: 3rem;
-    margin-top: 80px;
 }
 
 #inicio h2 {
@@ -88,12 +85,12 @@ header .nav-list a:hover {
 
 #inicio #characters {
     height: 100%;
-    width: 100%;
+    width: 80%;
     display: flex;
     position: absolute;
     z-index: 0;
     z-index: -1;
-    align-items: center;
+    align-items: flex-start;
     margin-top: 100px;
     justify-content: space-evenly;
 }
