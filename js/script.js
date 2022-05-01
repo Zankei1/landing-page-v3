@@ -1,4 +1,4 @@
-class smoothScroll {
+class SmoothScroll {
     constructor(navLinks) {
         this.navLinks = navLinks;
 
@@ -57,11 +57,10 @@ class smoothScroll {
         }
     }
 }
-
-class mobileMenu {
+class MobileMenu {
     constructor(mobileMenu, navLinks) {
-        this.mobileMenu = document.querySelector(mobileMenu);
-        this.navLinks = document.querySelectorAll(navLinks);
+        this.mobileMenu = mobileMenu;
+        this.navLinks = navLinks;
 
         this.toggleMenu = this.toggleMenu.bind(this);
     }
@@ -76,13 +75,25 @@ class mobileMenu {
     }
 
     toggleMenu(event) {
-        const nav = document.querySelector('nav');
         
         if (event.type === 'touchstart') {
             event.preventDefault();
         }
-        
+
+        const nav = document.querySelector('nav');
         nav.classList.toggle('active');
+
+        const active = nav.classList.contains('active');
+
+        if (event.currentTarget == this.mobileMenu) {
+            this.mobileMenu.setAttribute('aria-expanded', active);
+        }
+
+        if (active) {
+            event.currentTarget.setAttribute('aria-label', 'Fechar menu');
+        } else {
+            event.currentTarget.setAttribute('aria-label', 'Abrir menu');
+        }
         
         this.navLinks.forEach(link => {
             link.classList.toggle('active')
@@ -97,13 +108,14 @@ class mobileMenu {
 }   
 
 const navLinks = document.querySelectorAll('.menu a[href^="#"]');
-const scroll = new smoothScroll(navLinks);
+const buttonMobile = document.querySelector('#mobile-button');
+
+const scroll = new SmoothScroll(navLinks);
 scroll.init();
 
-const buttonMobile = new mobileMenu(
-    "#mobile-button",
-    ".menu a"
+const mobileMenu = new MobileMenu(
+    buttonMobile,
+    navLinks
 );
 
-buttonMobile.init();
-
+mobileMenu.init();

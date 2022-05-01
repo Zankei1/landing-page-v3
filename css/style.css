@@ -143,28 +143,21 @@ header #mobile-button span {
     }
     
     nav .menu {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
+        display: none;
+    }
+    
+    nav.active .menu {
         width: 100%;
         top: 10vh;
         left: 0;
-        height: 0px;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
         z-index: 1000;
-        transition: height 0.6s ease;
-        visibility: hidden;
-        overflow-y: hidden;
-        overflow: hidden;
-    }
-
-    nav.active .menu {
         height: 90vh;
-        visibility: visible;
         background-color: black;
         justify-content: space-evenly;
         align-items: center;
-        overflow-y: auto;
-        
     }
 
     .menu a {
